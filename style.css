@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.header {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.left-column, .right-column {
+    width: 45%;
+}
+
+.input-group {
+    margin-bottom: 10px;
+}
+
+#eventsTable {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#eventsTable, #eventsTable th, #eventsTable td {
+    border: 1px solid black;
+}
+
+#eventsTable th, #eventsTable td {
+    padding: 5px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}

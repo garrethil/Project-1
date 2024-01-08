@@ -1,27 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Weather App with Tailwind CSS</title>
-    <!-- Tailwind CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <title>Event Scheduler</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body class="bg-gray-100">
-
-<div class="container mx-auto mt-10 p-5">
-    <h1 class="text-3xl mb-6 text-center">Weather App</h1>
-    <div class="max-w-md mx-auto bg-white p-8 rounded-md shadow-md">
-        <input type="text" id="cityInput" class="w-full mb-4 p-2 border rounded-md" placeholder="Enter city name">
-        <button id="getWeatherBtn" class="w-full py-2 bg-green-500 text-white rounded-md">Get Weather</button>
-        <div id="weatherInfo" class="mt-6"></div>
+<body>
+    <div class="header">
+        <h1>Where are my events?</h1>
     </div>
-     
-</div>
-
-<!-- JavaScript -->
-<script src="script.js"></script>
-
+    <div class="container">
+        <div class="left-column">
+            <h2>Inputs</h2>
+            <div class="input-group">
+                <label for="eventName">Event name:</label>
+                <input type="text" id="eventName">
+            </div>
+            <div class="input-group">
+                <label for="eventTime">Time of event:</label>
+                <input type="datetime-local" id="eventTime">
+            </div>
+            <div class="input-group">
+                <label for="eventCity">City:</label>
+                <input type="text" id="eventCity">
+            </div>
+            <div class="input-group">
+                <label for="eventProvince">Province:</label>
+                <input type="text" id="eventProvince">
+            </div>
+            <div class="input-group">
+                <label for="startCity">Starting City:</label>
+                <input type="text" id="startCity">
+            </div>
+            <div class="input-group">
+                <label for="startProvince">Starting Province:</label>
+                <input type="text" id="startProvince">
+            </div>
+            <button id="saveButton">Save</button>
+        </div>
+        <div class="right-column">
+            <h2>Saved Events (Most Recent First)</h2>
+            <table id="eventsTable">
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Location</th>
+                        <th>Weather</th>
+                        <th>Directions</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Events will be added here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
 </body>
 </html>
