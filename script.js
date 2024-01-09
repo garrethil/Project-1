@@ -82,10 +82,7 @@ document.getElementById('closeModalBtn').addEventListener('click', function() {
   var weatherInfoDiv = document.getElementById('weatherInfo');
   weatherInfoDiv.innerHTML = " "
   modal.classList.add('hidden');
-  cityIN.value = ' '
-  cityIN.placeholder = 'Enter city name'
-  console.log(city)
-
+   location.reload();
 });
 
 // Initialize the map
