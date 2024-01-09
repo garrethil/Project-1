@@ -10,17 +10,17 @@ function saveEvent() {
     // Get input values
     const eventName = document.getElementById('eventName').value;
     const eventTime = document.getElementById('eventTime').value;
-    const eventCity = document.getElementById('eventCity').value;
-    const eventProvince = document.getElementById('eventProvince').value;
-    const startCity = document.getElementById('startCity').value;
-    const startProvince = document.getElementById('startProvince').value;
+    const eventAddress = document.getElementById('eventAddress').value;
+    
+    const startAddress = document.getElementById('startAddress').value;
+    
 
     // Create an event object
     const event = {
         eventName,
         eventTime,
-        location: eventCity + ', ' + eventProvince,
-        startingLocation: startCity + ', ' + startProvince,
+        location: eventAddress,
+        startingLocation: startAddress,
         weather: '', // Placeholder for weather data
         directions: '' // Placeholder for directions data
     };
@@ -51,11 +51,8 @@ function displayEvents() {
     events.forEach(event => {
         let row = eventsTableBody.insertRow();
         row.innerHTML = `
-            <td>${event.eventName}</td>
-            <td>${event.location}</td>
-            <td>${event.weather}</td>
-            <td>${event.directions}</td>
-            <td>${new Date(event.eventTime).toLocaleString()}</td>
+        <td><a href="eventDetails.html?eventId=${encodeURIComponent(event.eventName)}">${event.eventName}</a></td>
+           
         `;
     });
 }
@@ -63,9 +60,9 @@ function displayEvents() {
 function clearInputs() {
     document.getElementById('eventName').value = '';
     document.getElementById('eventTime').value = '';
-    document.getElementById('eventCity').value = '';
-    document.getElementById('eventProvince').value = '';
-    document.getElementById('startCity').value = '';
-    document.getElementById('startProvince').value = '';
+    document.getElementById('eventAddress').value = '';
+    
+    document.getElementById('startAddress').value = '';
+    
 }
 
