@@ -1,36 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Weather App with Tailwind CSS</title>
-    <!-- Tailwind CSS -->
+    <title>Event Scheduler</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body class="bg-gray-100">
-
-<div class="container mx-auto mt-10 p-5">
-    <h1 class="text-3xl mb-6 text-center">Weather App</h1>
-    <div class="max-w-md mx-auto bg-white p-8 rounded-md shadow-md">
-        <input type="text" id="cityInput" class="w-full mb-4 p-2 border rounded-md" placeholder="Enter city name">
-        <button id="getWeatherBtn" class="w-full py-2 bg-green-500 text-white rounded-md">Get Weather</button>
-        <div id="weatherInfo" class="mt-6"></div>
+<body>
+    <div class="header">
+        <h1>Where are my events?</h1>
     </div>
-      <!-- Error Modal -->
-  <div id="errorModal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-    <div class="bg-white rounded-lg p-8 max-w-md w-full">
-        <div class="mb-4">
-            <h2 class="text-xl font-semibold mb-2">Error</h2>
-            <p id="errorMessage" class="text-red-500"></p>
+    <div class="container">
+        <div class="left-column">
+            <h2>Inputs</h2>
+            <div class="input-group">
+                <label for="eventName">Event name:</label>
+                <input type="text" id="eventName">
+            </div>
+            <div class="input-group">
+                <label for="eventTime">Time of event:</label>
+                <input type="datetime-local" id="eventTime">
+            </div>
+            <div class="input-group">
+                <label for="eventAddress">Event Address:</label>
+                <input type="text" id="eventAddress">
+            </div>
+           
+            <div class="input-group">
+                <label for="startAddress">Starting Address</label>
+                <input type="text" id="startAddress">
+            </div>
+            
+            <button id="saveButton">Save</button>
         </div>
-        <button id="closeModalBtn" class="px-4 py-2 bg-red-500 text-white rounded-md">Close</button>
+        <div class="right-column">
+            <h2>Saved Events (Most Recent First)</h2>
+            <table id="eventsTable">
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Events will be added here -->
+                </tbody>
+            </table>
+        </div>
     </div>
-  </div>
-</div>
-
-<!-- JavaScript -->
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
