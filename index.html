@@ -1,22 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Scheduler</title>
-<<<<<<< HEAD
-=======
     <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script> -->
     <link rel="stylesheet" type="text/css" href="reset.css">
->>>>>>> c09aeed20d15a4eadce7cf60370ccb73d004578c
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <div class="header">
+    <header>
         <h1>Where are my events?</h1>
-    </div>
-    <div class="container">
-        <div class="left-column">
+    </header>
+    <main class="container">
+        <section class="left-column">
             <h2>Inputs</h2>
             <div class="input-group">
                 <label for="eventName">Event name:</label>
@@ -37,8 +36,8 @@
             </div>
             
             <button id="saveButton">Save</button>
-        </div>
-        <div class="right-column">
+        </section>
+        <section class="right-column">
             <h2>Saved Events (Most Recent First)</h2>
             <table id="eventsTable">
                 <thead>
@@ -48,11 +47,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Events will be added here -->
+                    
                 </tbody>
             </table>
-        </div>
-    </div>
+        </section>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
