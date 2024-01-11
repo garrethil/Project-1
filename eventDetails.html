@@ -75,7 +75,7 @@ weatherInfoDiv.innerHTML = `
 }
 
 function weather() {
-const city = document.getElementById('eventAddress').value;
+const city = document.getElementById('detailEventAddress').innerText;
 fetchWeather(city);
 }
 
