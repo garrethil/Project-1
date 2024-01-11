@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Details</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <!-- Add any additional CSS or JavaScript files here -->
+    <link rel="stylesheet" href="style.css">
+    <script src="index.js"></script>
 </head>
 <body>
     <h1>Event Details</h1>
@@ -20,32 +23,25 @@
 
     <a href="index.html">Back to Events List</a>
 
-    <script>document.addEventListener('DOMContentLoaded', function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const eventId = urlParams.get('eventId');
-    
-        if (eventId !== null) {
-            displayEventDetails(eventId);
-        }
-    });
-    
-    function displayEventDetails(eventId) {
-        const events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
-        const event = events.find(event => event.eventName === eventId);
-        if (event) {
-            
-            document.getElementById('detailEventName').innerText = event.eventName;
-            document.getElementById('detailEventTime').innerText = new Date(event.eventTime).toLocaleString();
-            document.getElementById('detailEventAddress').innerText = event.location;
-            document.getElementById('detailStartAddress').innerText = event.startingLocation;
-            document.getElementById('detailWeather').innerText = event.weather; // Placeholder value
-            document.getElementById('detailDirections').innerText = event.directions; // Placeholder value
-        } else {
-            // Handle invalid eventId
-            document.getElementById('eventDetail').innerHTML = '<p>Invalid event ID. Please select an event from the <a href="index.html">Events List</a>.</p>';
-        }
-    }</script>
 
+    <div id="floating-panel">
+        <strong>Mode of Travel: </strong>
+        <select id="mode">
+          <option value="DRIVING">Driving</option>
+          <option value="WALKING">Walking</option>
+          <option value="BICYCLING">Bicycling</option>
+          <option value="TRANSIT">Transit</option>
+        </select>
+        </div>
+      <div id="container">
+        <div id="map"></div>
+        <div id="sidebar"></div>
+      </div>
+
+      <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMk_S2bD3RDf-uQxRTBMIdTX8_6jJ5GgY&callback=initMap&v=weekly"
+        defer
+      ></script>
 
     
 </body>
