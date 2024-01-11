@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Details</title>
-    <!-- Add any additional CSS or JavaScript files here -->
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">-->
 </head>
 <body>
     <h1>Event Details</h1>
 
-    <div id="eventDetail">
-        <p><strong>Event Name:</strong> <span id="detailEventName"></span></p>
-        <p><strong>Event Time:</strong> <span id="detailEventTime"></span></p>
-        <p><strong>Event Address:</strong> <span id="detailEventAddress"></span></p>
-        <p><strong>Starting Address:</strong> <span id="detailStartAddress"></span></p>
-        <p><strong>Weather:</strong> <span id="detailWeather"></span></p>
-        <p><strong>Directions:</strong> <span id="detailDirections"></span></p>
-    </div>
+    <main id="eventDetail">
+        <p>Event Name: <span id="detailEventName"></span></p>
+        <p>Event Time: <span id="detailEventTime"></span></p>
+        <p>Event Address: <span id="detailEventAddress"></span></p>
+        <p>Starting Address: <span id="detailStartAddress"></span></p>
+        <p>Weather: <span id="detailWeather"></span></p>
+        <p>Directions: <span id="detailDirections"></span></p>
+    </main>
 
-    <a href="index.html">Back to Events List</a>
+    <a href="index.html">Back</a>
 
     <script>document.addEventListener('DOMContentLoaded', function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const eventId = urlParams.get('eventId');
+        const urlString = new URLSearchParams(window.location.search);
+        const eventId = urlString.get('eventId');
     
         if (eventId !== null) {
             displayEventDetails(eventId);
@@ -38,19 +38,55 @@
             document.getElementById('detailEventTime').innerText = new Date(event.eventTime).toLocaleString();
             document.getElementById('detailEventAddress').innerText = event.location;
             document.getElementById('detailStartAddress').innerText = event.startingLocation;
-            document.getElementById('detailWeather').innerText = event.weather; // Placeholder value
-            document.getElementById('detailDirections').innerText = event.directions; // Placeholder value
+             
+            document.getElementById('detailDirections').innerText = event.directions; 
         } else {
-            // Handle invalid eventId
-            document.getElementById('eventDetail').innerHTML = '<p>Invalid event ID. Please select an event from the <a href="index.html">Events List</a>.</p>';
+            
+            document.getElementById('eventDetail').innerHTML = '<p>Event not found.</p>';
         }
-    }</script>
+    }
+    
+    function fetchWeather(city) {
+
+const apiKey = 'c88c041873c88fa8bc608b33404b1a02'; 
+const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+ 
+fetch(apiUrl)
+.then(response => response.json())
+.then(data => {
+   displayWeather(data);
+   console.log(data)
+})
+.catch(error => {
+   console.error('Error fetching weather:', error);
+});
+}
+
+function displayWeather(data) {
+var weatherInfoDiv = document.getElementById('detailWeather');
+weatherInfoDiv.innerHTML = `
+   <h2 class="text-xl mb-2">${data.name}, ${data.sys.country}</h2>
+   <p class="mb-1">Temperature: ${data.main.temp}°C</p>
+   <p class="mb-1">Weather: ${data.weather[0].description}</p>
+   <p class="mb-1">Humidity: ${data.main.humidity}%</p>
+   <p class="mb-1">Temp low: ${data.main.temp_min}%</p>
+   <p class="mb-1">temp high: ${data.main.temp_max}%</p>
+`;
+}
+
+function weather() {
+const city = document.getElementById('eventAddress').value;
+fetchWeather(city);
+}
+
+// Call the weather function when the page loads
+window.onload = function() {
+weather();
+};
+</script>
 
 
     
 </body>
 </html>
-<<<<<<< HEAD
-=======
 
->>>>>>> c09aeed20d15a4eadce7cf60370ccb73d004578c
