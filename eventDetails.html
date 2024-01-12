@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Details</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" href="style.css">
     <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">-->
+    <script src="index.js"></script>
 </head>
 <body>
     <h1>Event Details</h1>
@@ -16,74 +19,33 @@
         <p>Starting Address: <span id="detailStartAddress"></span></p>
         <p>Weather: <span id="detailWeather"></span></p>
         <p>Directions: <span id="detailDirections"></span></p>
+
+        <div id="floating-panel">
+          <strong>Mode of Travel: </strong>
+          <select id="mode">
+            <option value="DRIVING">Driving</option>
+            <option value="WALKING">Walking</option>
+            <option value="BICYCLING">Bicycling</option>
+            <option value="TRANSIT">Transit</option>
+          </select>
+          </div>
+        <div id="container">
+          <div id="map"></div>
+          <div id="sidebar"></div>
+        </div>
+  
+        
+  
     </main>
 
     <a href="index.html">Back</a>
 
-    <script>document.addEventListener('DOMContentLoaded', function () {
-        const urlString = new URLSearchParams(window.location.search);
-        const eventId = urlString.get('eventId');
+    <script
+          src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMk_S2bD3RDf-uQxRTBMIdTX8_6jJ5GgY&callback=initMap&v=weekly"
+          defer
+        ></script>
+
     
-        if (eventId !== null) {
-            displayEventDetails(eventId);
-        }
-    });
-    
-    function displayEventDetails(eventId) {
-        const events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
-        const event = events.find(event => event.eventName === eventId);
-        if (event) {
-            
-            document.getElementById('detailEventName').innerText = event.eventName;
-            document.getElementById('detailEventTime').innerText = new Date(event.eventTime).toLocaleString();
-            document.getElementById('detailEventAddress').innerText = event.location;
-            document.getElementById('detailStartAddress').innerText = event.startingLocation;
-             
-            document.getElementById('detailDirections').innerText = event.directions; 
-        } else {
-            
-            document.getElementById('eventDetail').innerHTML = '<p>Event not found.</p>';
-        }
-    }
-    
-    function fetchWeather(city) {
-
-const apiKey = 'c88c041873c88fa8bc608b33404b1a02'; 
-const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
- 
-fetch(apiUrl)
-.then(response => response.json())
-.then(data => {
-   displayWeather(data);
-   console.log(data)
-})
-.catch(error => {
-   console.error('Error fetching weather:', error);
-});
-}
-
-function displayWeather(data) {
-var weatherInfoDiv = document.getElementById('detailWeather');
-weatherInfoDiv.innerHTML = `
-   <h2 class="text-xl mb-2">${data.name}, ${data.sys.country}</h2>
-   <p class="mb-1">Temperature: ${data.main.temp}°C</p>
-   <p class="mb-1">Weather: ${data.weather[0].description}</p>
-   <p class="mb-1">Humidity: ${data.main.humidity}%</p>
-   <p class="mb-1">Temp low: ${data.main.temp_min}%</p>
-   <p class="mb-1">temp high: ${data.main.temp_max}%</p>
-`;
-}
-
-function weather() {
-const city = document.getElementById('detailEventAddress').innerText;
-fetchWeather(city);
-}
-
-// Call the weather function when the page loads
-window.onload = function() {
-weather();
-};
-</script>
 
 
     

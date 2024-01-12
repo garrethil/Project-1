@@ -39,6 +39,28 @@ function saveEvent() {
   clearInputs();
 }
 
+// auto Complete
+let autocomplete; 
+    function initAutocomplete() {
+      autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('startAddress'),
+        {
+          types: ['address'],
+          componentRestrictions: {'country' : ['us', 'ca']},
+          fields: ['place_id', 'geometry', 'name']
+        });
+
+        autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById('eventAddress'),
+        {
+          types: ['address'],
+          componentRestrictions: {'country' : ['us', 'ca']},
+          fields: ['place_id', 'geometry', 'name']
+        });
+        
+    }
+
+
 function displayEvents() {
   const events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
   const eventsTableBody = document.getElementById('eventsTable').getElementsByTagName('tbody')[0];
