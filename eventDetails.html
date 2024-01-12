@@ -4,50 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Event Details</title>
-    <!-- Add any additional CSS or JavaScript files here -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>Event Details</h1>
+<body class="bg-gray-100 p-8">
 
-    <div id="eventDetail">
-        <p><strong>Event Name:</strong> <span id="detailEventName"></span></p>
-        <p><strong>Event Time:</strong> <span id="detailEventTime"></span></p>
-        <p><strong>Event Address:</strong> <span id="detailEventAddress"></span></p>
-        <p><strong>Starting Address:</strong> <span id="detailStartAddress"></span></p>
-        <p><strong>Weather:</strong> <span id="detailWeather"></span></p>
-        <p><strong>Directions:</strong> <span id="detailDirections"></span></p>
+    <h1 class="text-2xl mb-6">Event Details</h1>
+
+    <div id="eventDetail" class="bg-white p-6 rounded shadow-md">
+        <p class="mb-2"><strong>Event Name:</strong> <span id="detailEventName" class="text-blue-500"></span></p>
+        <p class="mb-2"><strong>Event Time:</strong> <span id="detailEventTime" class="text-green-500"></span></p>
+        <p class="mb-2"><strong>Event Address:</strong> <span id="detailEventAddress" class="text-purple-500"></span></p>
+        <p class="mb-2"><strong>Starting Address:</strong> <span id="detailStartAddress" class="text-red-500"></span></p>
+        <p class="mb-2"><strong>Weather:</strong> <span id="detailWeather" class="text-yellow-500"></span></p>
+        <p class="mb-2"><strong>Directions:</strong> <span id="detailDirections" class="text-indigo-500"></span></p>
     </div>
 
-    <a href="index.html">Back to Events List</a>
+    <a href="index.html" class="block mt-4 text-blue-600 hover:text-blue-800">Back to Events List</a>
 
-    <script>document.addEventListener('DOMContentLoaded', function () {
-        const urlParams = new URLSearchParams(window.location.search);
-        const eventId = urlParams.get('eventId');
-    
-        if (eventId !== null) {
-            displayEventDetails(eventId);
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const eventId = urlParams.get('eventId');
+        
+            if (eventId !== null) {
+                displayEventDetails(eventId);
+            }
+        });
+        
+        function displayEventDetails(eventId) {
+            const events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
+            const event = events.find(event => event.eventName === eventId);
+            if (event) {
+                document.getElementById('detailEventName').innerText = event.eventName;
+                document.getElementById('detailEventTime').innerText = new Date(event.eventTime).toLocaleString();
+                document.getElementById('detailEventAddress').innerText = event.location;
+                document.getElementById('detailStartAddress').innerText = event.startingLocation;
+                document.getElementById('detailWeather').innerText = event.weather; // Placeholder value
+                document.getElementById('detailDirections').innerText = event.directions; // Placeholder value
+            } else {
+                // Handle invalid eventId
+                document.getElementById('eventDetail').innerHTML = '<p class="text-red-500">Invalid event ID. Please select an event from the <a href="index.html" class="text-blue-500">Events List</a>.</p>';
+            }
         }
-    });
-    
-    function displayEventDetails(eventId) {
-        const events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
-        const event = events.find(event => event.eventName === eventId);
-        if (event) {
-            
-            document.getElementById('detailEventName').innerText = event.eventName;
-            document.getElementById('detailEventTime').innerText = new Date(event.eventTime).toLocaleString();
-            document.getElementById('detailEventAddress').innerText = event.location;
-            document.getElementById('detailStartAddress').innerText = event.startingLocation;
-            document.getElementById('detailWeather').innerText = event.weather; // Placeholder value
-            document.getElementById('detailDirections').innerText = event.directions; // Placeholder value
-        } else {
-            // Handle invalid eventId
-            document.getElementById('eventDetail').innerHTML = '<p>Invalid event ID. Please select an event from the <a href="index.html">Events List</a>.</p>';
-        }
-    }</script>
-
-
-    
+    </script>
 </body>
 </html>
-
