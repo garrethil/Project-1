@@ -55,7 +55,7 @@ let autocomplete;
           componentRestrictions: {'country' : ['us', 'ca']},
           fields: ['place_id', 'geometry', 'name']
         });
-        
+
     }
 
 

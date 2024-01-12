@@ -22,11 +22,27 @@ function displayEventDetails(eventId) {
       document.getElementById('detailStartAddress').innerText = event.startingLocation;
       document.getElementById('detailWeather').innerText = event.weather; // Placeholder value
       document.getElementById('detailDirections').innerText = event.directions; // Placeholder value
+
+      // conver address to coordinates 
+      geocoder = new google.maps.Geocoder();
+    var address = document.getElementById("detailEventAddress").value;
+    geocoder.geocode( { 'address': address}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+
+      console.log("Latitude: "+results[0].geometry.location.lat());
+      console.log("Longitude: "+results[0].geometry.location.lng());
+      } 
+
+      else {
+        alert("Geocode was not successful for the following reason: " + status);
+      }
+    });
   } else {
       // Handle invalid eventId
       document.getElementById('eventDetail').innerHTML = '<p>Invalid event ID. Please select an event from the <a href="index.html">Events List</a>.</p>';
   }
 }
+
 
 // Map function
 
