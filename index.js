@@ -51,9 +51,13 @@ weatherInfoDiv.innerHTML = `
 <p class="mb-1">temp high: ${data.main.temp_max}%</p>
 `;
  if (data.main.temp < 5) {
-    setTimeout(function() {
-        alert("It's cold outside.");
-    }, 100); 
+ var modal = document.getElementById("weatherModal");
+    var closemodal = document.getElementById("close");
+    var modalText = document.getElementById("modalText");
+    modalText.innerText = "It's cold outside!";
+    closemodal.onclick = function() {
+        modal.style.display = "none";
+    }   
 }   
 }
 
