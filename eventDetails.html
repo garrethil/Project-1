@@ -6,19 +6,19 @@
     <title>Event Details</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
     <link rel="stylesheet" href="style.css">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">-->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="index.js"></script>
 </head>
-<body>
-    <h1>Event Details</h1>
+<body class="bg-gray-100 p-8">
+    <h1 class="text-2xl mb-6">Event Details</h1>
 
-    <main id="eventDetail">
-        <p>Event Name: <span id="detailEventName"></span></p>
-        <p>Event Time: <span id="detailEventTime"></span></p>
-        <p>Event Address: <span id="detailEventAddress"></span></p>
-        <p>Starting Address: <span id="detailStartAddress"></span></p>
-        <p>Weather: <span id="detailWeather"></span></p>
-        <p>Directions: <span id="detailDirections"></span></p>
+    <main id="eventDetail" class="bg-white p-6 rounded shadow-md">
+        <p class="mb-2">Event Name: <span id="detailEventName" class="text-blue-500"></span></p>
+        <p class="mb-2">Event Time: <span id="detailEventTime" class="text-green-500"></span></p>
+        <p class="mb-2">Event Address: <span id="detailEventAddress" class="text-purple-500"></span></p>
+        <p class="mb-2">Starting Address: <span id="detailStartAddress" class="text-red-500"></span></p>
+        <p class="mb-2">Weather: <span id="detailWeather" class="text-yellow-500"></span></p>
+        <p class="mb-2">Directions: <span id="detailDirections" class="text-indigo-500"></span></p>
 
         <div id="floating-panel">
           <strong>Mode of Travel: </strong>
@@ -38,7 +38,7 @@
   
     </main>
 
-    <a href="index.html">Back</a>
+    <a href="index.html" class="block mt-4 text-xl text-blue-600 hover:text-blue-800">Back</a>
 
     <script
           src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMk_S2bD3RDf-uQxRTBMIdTX8_6jJ5GgY&callback=initMap&v=weekly"

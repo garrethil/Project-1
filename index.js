@@ -52,10 +52,12 @@ weatherInfoDiv.innerHTML = `
 `;
 }
 
-function weather() {
+function weather() {   
 const city = document.getElementById('detailEventAddress').innerText;
 fetchWeather(city);
 }
+
+
 
 // Call the weather function when the page loads
 window.onload = function() {
