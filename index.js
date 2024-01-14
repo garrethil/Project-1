@@ -50,6 +50,11 @@ weatherInfoDiv.innerHTML = `
 <p class="mb-1">Temp low: ${data.main.temp_min}%</p>
 <p class="mb-1">temp high: ${data.main.temp_max}%</p>
 `;
+ if (data.main.temp < 5) {
+    setTimeout(function() {
+        alert("It's cold outside.");
+    }, 100); 
+}   
 }
 
 function weather() {   
