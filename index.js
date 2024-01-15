@@ -37,34 +37,33 @@ const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=
 fetch(apiUrl)
 .then(response => response.json())
 .then(data => {
-// displayWeather(data);
-console.log(data)
+displayWeather(data);
 })
 .catch(error => {
 console.error('Error fetching weather:', error);
 });
 }
 
-// function displayWeather(data) {
-// var weatherInfoDiv = document.getElementById('detailWeather');
-// weatherInfoDiv.innerHTML = `
-// <h2 class="text-xl mb-2">${data.city.name}, ${data.city.country}</h2>
-// <p class="mb-1">Temperature: ${data.main.temp}°C</p>
-// <p class="mb-1">Weather: ${data.weather[0].description}</p>
-// <p class="mb-1">Humidity: ${data.main.humidity}%</p>
-// <p class="mb-1">Temp low: ${data.main.temp_min}%</p>
-// <p class="mb-1">temp high: ${data.main.temp_max}%</p>
-// `;
-//  if (data.main.temp < 5) {
-//  var modal = document.getElementById("weatherModal");
-//     var closemodal = document.getElementById("close");
-//     var modalText = document.getElementById("modalText");
-//     modalText.innerText = "It's cold outside!";
-//     closemodal.onclick = function() {
-//         modal.style.display = "none";
-//     }   
-// }   
-// }
+function displayWeather(data) {
+var weatherInfoDiv = document.getElementById('detailWeather');
+weatherInfoDiv.innerHTML = `
+<h2 class="text-xl mb-2">${data.city.name}, ${data.city.country}</h2>
+<p class="mb-1">Temperature: ${data.main.temp}°C</p>
+<p class="mb-1">Weather: ${data.weather[0].description}</p>
+<p class="mb-1">Humidity: ${data.main.humidity}%</p>
+<p class="mb-1">Temp low: ${data.main.temp_min}%</p>
+<p class="mb-1">temp high: ${data.main.temp_max}%</p>
+`;
+ if (data.main.temp < 5) {
+ var modal = document.getElementById("weatherModal");
+    var closemodal = document.getElementById("close");
+    var modalText = document.getElementById("modalText");
+    modalText.innerText = "It's cold outside!";
+    closemodal.onclick = function() {
+        modal.style.display = "none";
+    }   
+}   
+}
 
 
 

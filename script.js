@@ -39,7 +39,6 @@ let Difference_In_Days =
     Math.round(Difference_In_Time / (1000 * 3600 * 24));
 
 let dateDifference = Difference_In_Days - 1;
-console.log(dateDifference);
 }
 
 
@@ -68,7 +67,7 @@ function saveEvent() {
   events.push(event);
   localStorage.setItem('events', JSON.stringify(events));
 
- 
+// get difference between event date and current date
   getDateDifference();
  
   // Display events
