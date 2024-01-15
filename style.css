@@ -37,6 +37,47 @@ body {
     background-color: #f2f2f2;
   }
   
+/* modal styling */
+.modal {
+  display: none; 
+  justify-content: center;
+  align-items: center;
+  position: fixed; 
+  z-index: 1; 
+  padding-top: 100px; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  overflow: auto;
+  background-color: rgba(123, 123, 123, 0.462);
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #8cb2c7;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 20%;
+}
+
+/* The Close Button */
+.close {
+  color: #000000;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+
   /* maps styling */
   
   #container {

@@ -19,12 +19,14 @@
         <p class="mb-2">Starting Address: <span id="detailStartAddress" class="text-red-500"></span></p>
         <p class="mb-2">Weather: <span id="detailWeather" class="text-yellow-500"></span></p>
 
-        <div id="weatherModal">  
-          <div>
-            <span id="close">&times;</span>
-            <p id="modalText" class="text-yellow-500"></p>
+        <div id="weatherModal" class="modal">  
+          <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <p id="modalText">Grab a jacket, it's cold!</p>
           </div>    
           </div>
+
+
         <p class="mb-2">Directions: <span id="detailDirections" class="text-indigo-500"></span></p>
 
         <div id="floating-panel">

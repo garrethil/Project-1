@@ -60,16 +60,22 @@ weatherInfoDiv.innerHTML = `
 <p class="mb-1">temp high: ${data.list[difference].main.temp_max}°C</p>
 `;
  if (data.list[difference].main.temp < 5) {
- var modal = document.getElementById("weatherModal");
- modal.style.display = "block";
-    var closemodal = document.getElementById("weatherModal");
-    var modalText = document.getElementById("modalText");
-    modalText.innerText = "It's cold outside!";
-    closemodal.onclick = function() {
-        modal.style.display = "none";
-    }   
+openModal();  
 }   
 }
+
+function openModal() {
+  var modal = document.getElementById('weatherModal')
+  modal.style.display = 'flex';
+}
+
+function closeModal() {
+  var modal = document.getElementById('weatherModal');
+  modal.style.display = "none";
+}
+
+
+
 
 
 
