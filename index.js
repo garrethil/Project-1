@@ -32,15 +32,15 @@ function displayEventDetails(eventId) {
     }
 }
 
-function fetchWeather(city) {
+function fetchWeather() {
 
-const apiKey = 'c88c041873c88fa8bc608b33404b1a02'; 
-const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+const apiKey = 'f82e73b7c476079e70c2e28b4b868caf'; 
+const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lng}&appid=${apiKey}&units=metric`;
 
 fetch(apiUrl)
 .then(response => response.json())
 .then(data => {
-displayWeather(data);
+// displayWeather(data);
 console.log(data)
 })
 .catch(error => {
@@ -48,37 +48,32 @@ console.error('Error fetching weather:', error);
 });
 }
 
-function displayWeather(data) {
-var weatherInfoDiv = document.getElementById('detailWeather');
-weatherInfoDiv.innerHTML = `
-<h2 class="text-xl mb-2">${data.name}, ${data.sys.country}</h2>
-<p class="mb-1">Temperature: ${data.main.temp}°C</p>
-<p class="mb-1">Weather: ${data.weather[0].description}</p>
-<p class="mb-1">Humidity: ${data.main.humidity}%</p>
-<p class="mb-1">Temp low: ${data.main.temp_min}%</p>
-<p class="mb-1">temp high: ${data.main.temp_max}%</p>
-`;
- if (data.main.temp < 5) {
- var modal = document.getElementById("weatherModal");
-    var closemodal = document.getElementById("close");
-    var modalText = document.getElementById("modalText");
-    modalText.innerText = "It's cold outside!";
-    closemodal.onclick = function() {
-        modal.style.display = "none";
-    }   
-}   
-}
-
-function weather() {   
-const city = document.getElementById('detailEventAddress').innerText;
-fetchWeather(city);
-}
+// function displayWeather(data) {
+// var weatherInfoDiv = document.getElementById('detailWeather');
+// weatherInfoDiv.innerHTML = `
+// <h2 class="text-xl mb-2">${data.name}, ${data.sys.country}</h2>
+// <p class="mb-1">Temperature: ${data.main.temp}°C</p>
+// <p class="mb-1">Weather: ${data.weather[0].description}</p>
+// <p class="mb-1">Humidity: ${data.main.humidity}%</p>
+// <p class="mb-1">Temp low: ${data.main.temp_min}%</p>
+// <p class="mb-1">temp high: ${data.main.temp_max}%</p>
+// `;
+//  if (data.main.temp < 5) {
+//  var modal = document.getElementById("weatherModal");
+//     var closemodal = document.getElementById("close");
+//     var modalText = document.getElementById("modalText");
+//     modalText.innerText = "It's cold outside!";
+//     closemodal.onclick = function() {
+//         modal.style.display = "none";
+//     }   
+// }   
+// }
 
 
 
 // Call the weather function when the page loads
 window.onload = function() {
-weather();
+  fetchWeather();
 };
 
 // Map function
