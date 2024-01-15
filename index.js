@@ -1,5 +1,6 @@
 let lat;
 let lng;
+let difference;
 document.addEventListener('DOMContentLoaded', function () {
     const urlString = new URLSearchParams(window.location.search);
     const eventId = urlString.get('eventId');
@@ -23,6 +24,7 @@ function displayEventDetails(eventId) {
 
         lat = Number(event.coordinates.lat.toFixed(2));
         lng =  Number(event.coordinates.lng.toFixed(2));
+        difference = event.daysAway;
     } else {
         
         document.getElementById('eventDetail').innerHTML = '<p>Event not found.</p>';
@@ -38,6 +40,7 @@ fetch(apiUrl)
 .then(response => response.json())
 .then(data => {
 displayWeather(data);
+console.log(data);
 })
 .catch(error => {
 console.error('Error fetching weather:', error);
@@ -48,13 +51,13 @@ function displayWeather(data) {
 var weatherInfoDiv = document.getElementById('detailWeather');
 weatherInfoDiv.innerHTML = `
 <h2 class="text-xl mb-2">${data.city.name}, ${data.city.country}</h2>
-<p class="mb-1">Temperature: ${data.main.temp}°C</p>
-<p class="mb-1">Weather: ${data.weather[0].description}</p>
-<p class="mb-1">Humidity: ${data.main.humidity}%</p>
-<p class="mb-1">Temp low: ${data.main.temp_min}%</p>
-<p class="mb-1">temp high: ${data.main.temp_max}%</p>
+<p class="mb-1">Temperature: ${data.list[difference].main.temp}°C</p>
+<p class="mb-1">Weather: ${data.list[difference].weather[0].description}</p>
+<p class="mb-1">Humidity: ${data.list[difference].main.humidity}%</p>
+<p class="mb-1">Temp low: ${data.list[difference].main.temp_min}°C</p>
+<p class="mb-1">temp high: ${data.list[difference].main.temp_max}°C</p>
 `;
- if (data.main.temp < 5) {
+ if (data.list[difference].temp < 5) {
  var modal = document.getElementById("weatherModal");
     var closemodal = document.getElementById("close");
     var modalText = document.getElementById("modalText");
