@@ -1,3 +1,5 @@
+let coords;
+
 document.addEventListener('DOMContentLoaded', function () {
   const saveButton = document.getElementById('saveButton');
   saveButton.addEventListener('click', saveEvent);
@@ -24,7 +26,8 @@ function saveEvent() {
       location: eventAddress,
       startingLocation: startAddress,
       weather: '',
-      directions: '' 
+      directions: '',
+      coordinates: coords
   };
 
   // Save to local storage
@@ -57,8 +60,27 @@ let autocomplete;
           componentRestrictions: {'country' : ['us', 'ca']},
           fields: ['place_id', 'geometry', 'name']
         });
-        
+        autocompleteUse.addListener('place_changed', onPlaceChanged);
     }
+
+
+    function onPlaceChanged() {
+      var place = autocompleteUse.getPlace();
+
+     if (!place.geometry) {
+      console.log(error);
+     }else {
+      fetch('https://maps.googleapis.com/maps/api/geocode/json?place_id=' + place.place_id + '&key=AIzaSyAMk_S2bD3RDf-uQxRTBMIdTX8_6jJ5GgY')
+      .then(response => response.json())
+      .then(data => {
+      //  get coordinates from data returned
+        coords = data.results[0].geometry.location
+      })
+      .catch(error => {
+        // Handle any errors
+        console.error(error);
+      });
+     }}
 
 
 function displayEvents() {

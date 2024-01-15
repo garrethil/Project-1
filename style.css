@@ -64,7 +64,6 @@ body {
   }
   
   #floating-panel {
-    position: absolute;
     top: 10px;
     left: 25%;
     z-index: 5;

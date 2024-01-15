@@ -1,3 +1,6 @@
+let lat;
+let lng;
+
 document.addEventListener('DOMContentLoaded', function () {
     const urlString = new URLSearchParams(window.location.search);
     const eventId = urlString.get('eventId');
@@ -18,6 +21,11 @@ function displayEventDetails(eventId) {
         document.getElementById('detailStartAddress').innerText = event.startingLocation;
          
         document.getElementById('detailDirections').innerText = event.directions; 
+
+      lat = Number(event.coordinates.lat.toFixed(2));
+      lng =  Number(event.coordinates.lng.toFixed(2));
+
+        console.log(lat + ' '+lng);
     } else {
         
         document.getElementById('eventDetail').innerHTML = '<p>Event not found.</p>';
