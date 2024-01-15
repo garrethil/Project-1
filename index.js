@@ -1,6 +1,5 @@
 let lat;
 let lng;
-
 document.addEventListener('DOMContentLoaded', function () {
     const urlString = new URLSearchParams(window.location.search);
     const eventId = urlString.get('eventId');
@@ -22,10 +21,8 @@ function displayEventDetails(eventId) {
          
         document.getElementById('detailDirections').innerText = event.directions; 
 
-      lat = Number(event.coordinates.lat.toFixed(2));
-      lng =  Number(event.coordinates.lng.toFixed(2));
-
-        console.log(lat + ' '+lng);
+        lat = Number(event.coordinates.lat.toFixed(2));
+        lng =  Number(event.coordinates.lng.toFixed(2));
     } else {
         
         document.getElementById('eventDetail').innerHTML = '<p>Event not found.</p>';
@@ -51,7 +48,7 @@ console.error('Error fetching weather:', error);
 // function displayWeather(data) {
 // var weatherInfoDiv = document.getElementById('detailWeather');
 // weatherInfoDiv.innerHTML = `
-// <h2 class="text-xl mb-2">${data.name}, ${data.sys.country}</h2>
+// <h2 class="text-xl mb-2">${data.city.name}, ${data.city.country}</h2>
 // <p class="mb-1">Temperature: ${data.main.temp}°C</p>
 // <p class="mb-1">Weather: ${data.weather[0].description}</p>
 // <p class="mb-1">Humidity: ${data.main.humidity}%</p>

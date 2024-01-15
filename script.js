@@ -1,4 +1,6 @@
 let coords;
+let date1;
+let dateDifference;
 
 document.addEventListener('DOMContentLoaded', function () {
   const saveButton = document.getElementById('saveButton');
@@ -9,6 +11,36 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 
+function getDateDifference() {
+  const today = new Date();
+const options1 = { 
+  month: '2-digit', 
+  day: '2-digit', 
+  year: 'numeric' 
+};
+
+const formattedDate = today.toLocaleDateString(undefined, options1);
+
+
+let text = document.getElementById('eventTime').value;
+const eventDate = new Date(text);
+const options2 = { day: '2-digit', month: '2-digit', year: 'numeric' };
+const formattedDate2 = eventDate.toLocaleDateString("en-US", options2);
+
+
+let date1 = new Date(formattedDate);
+let date2 = new Date(formattedDate2);
+ 
+// To calculate the time difference of two dates
+let Difference_In_Time = date2.getTime() - date1.getTime();
+ 
+// To calculate the no. of days between two dates
+let Difference_In_Days = 
+    Math.round(Difference_In_Time / (1000 * 3600 * 24));
+
+let dateDifference = Difference_In_Days - 1;
+console.log(dateDifference);
+}
 
 
 function saveEvent() {
@@ -27,7 +59,8 @@ function saveEvent() {
       startingLocation: startAddress,
       weather: '',
       directions: '',
-      coordinates: coords
+      coordinates: coords,
+      daysAway: dateDifference
   };
 
   // Save to local storage
@@ -35,11 +68,16 @@ function saveEvent() {
   events.push(event);
   localStorage.setItem('events', JSON.stringify(events));
 
+ 
+  getDateDifference();
+ 
   // Display events
   displayEvents();
 
-  // Clear input fields
+  // // Clear input fields
   clearInputs();
+
+
 }
 
 // auto Complete
