@@ -1,6 +1,9 @@
 let lat;
 let lng;
 let difference;
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     const urlString = new URLSearchParams(window.location.search);
     const eventId = urlString.get('eventId');
@@ -40,7 +43,6 @@ fetch(apiUrl)
 .then(response => response.json())
 .then(data => {
 displayWeather(data);
-console.log(data);
 })
 .catch(error => {
 console.error('Error fetching weather:', error);
@@ -57,9 +59,10 @@ weatherInfoDiv.innerHTML = `
 <p class="mb-1">Temp low: ${data.list[difference].main.temp_min}°C</p>
 <p class="mb-1">temp high: ${data.list[difference].main.temp_max}°C</p>
 `;
- if (data.list[difference].temp < 5) {
+ if (data.list[difference].main.temp < 5) {
  var modal = document.getElementById("weatherModal");
-    var closemodal = document.getElementById("close");
+ modal.style.display = "block";
+    var closemodal = document.getElementById("weatherModal");
     var modalText = document.getElementById("modalText");
     modalText.innerText = "It's cold outside!";
     closemodal.onclick = function() {

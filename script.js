@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
   displayEvents();
 });
 
+let dateInput = document.getElementById('eventTime');
+dateInput.addEventListener('change', getDateDifference);
 
 function getDateDifference() {
   const today = new Date();
@@ -38,7 +40,7 @@ let Difference_In_Time = date2.getTime() - date1.getTime();
 let Difference_In_Days = 
     Math.round(Difference_In_Time / (1000 * 3600 * 24));
 
-let dateDifference = Difference_In_Days - 1;
+dateDifference = Difference_In_Days - 1;
 }
 
 
@@ -49,7 +51,7 @@ function saveEvent() {
   const eventAddress = document.getElementById('eventAddress').value;
   
   const startAddress = document.getElementById('startAddress').value;
-  
+
   // Create an event 
   const event = {
       eventName,
@@ -61,14 +63,11 @@ function saveEvent() {
       coordinates: coords,
       daysAway: dateDifference
   };
-
+  console
   // Save to local storage
   let events = localStorage.getItem('events') ? JSON.parse(localStorage.getItem('events')) : [];
   events.push(event);
   localStorage.setItem('events', JSON.stringify(events));
-
-// get difference between event date and current date
-  getDateDifference();
  
   // Display events
   displayEvents();
@@ -81,6 +80,7 @@ function saveEvent() {
 
 // auto Complete
 let autocomplete; 
+let autocomplete1;
     function initAutocomplete() {
       autocomplete = new google.maps.places.Autocomplete(
         document.getElementById('startAddress'),
@@ -90,28 +90,28 @@ let autocomplete;
           fields: ['place_id', 'geometry', 'name']
         });
 
-        autocomplete = new google.maps.places.Autocomplete(
+        autocomplete1 = new google.maps.places.Autocomplete(
         document.getElementById('eventAddress'),
         {
           types: ['address'],
           componentRestrictions: {'country' : ['us', 'ca']},
           fields: ['place_id', 'geometry', 'name']
         });
-        autocompleteUse.addListener('place_changed', onPlaceChanged);
+        autocomplete1.addListener('place_changed', onPlaceChanged);
     }
 
 
     function onPlaceChanged() {
-      var place = autocompleteUse.getPlace();
+      var place = autocomplete1.getPlace();
 
      if (!place.geometry) {
       console.log(error);
      }else {
-      fetch('https://maps.googleapis.com/maps/api/geocode/json?place_id=' + place.place_id + '&key=AIzaSyAMk_S2bD3RDf-uQxRTBMIdTX8_6jJ5GgY')
+      fetch('https://maps.googleapis.com/maps/api/geocode/json?place_id=' + place.place_id + '&key=AIzaSyC0mXtBg2BJhA4sLDmoC-mJf1vN5XzhRNw')
       .then(response => response.json())
       .then(data => {
       //  get coordinates from data returned
-        coords = data.results[0].geometry.location
+        coords = data.results[0].geometry.location;
       })
       .catch(error => {
         // Handle any errors
